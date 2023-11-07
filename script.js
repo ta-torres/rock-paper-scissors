@@ -38,3 +38,25 @@ function playRound(playerSelection, computerSelection){
         return `You lose! ${computerSelection} beats ${playerSelection}`;
     }
 }
+
+function game(){
+    let playerScore = 0;
+    let computerScore = 0;
+    let rounds = 1;
+
+    for (rounds; rounds <= 5; rounds++){
+        let playerSelection = getPlayerChoice();
+        let computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+
+        if (playRound(playerSelection, computerSelection).includes("win")){
+            playerScore++;
+        }
+        else if (playRound(playerSelection, computerSelection).includes("lose")){
+            computerScore++;
+        }
+    }
+    console.log(`Player score: ${playerScore}`);
+    console.log(`Computer score: ${computerScore}`);
+}
+//game();
