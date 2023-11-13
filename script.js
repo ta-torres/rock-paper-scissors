@@ -3,26 +3,31 @@ function getComputerChoice() {
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
+function validatePlayerChoice(playerSelection) {
+    if (playerSelection === "rock" ||
+        playerSelection === "paper" ||
+        playerSelection === "scissors"){
+            return true;
+    }
+    else {
+        console.log("Please enter rock, paper, or scissors");
+        return false;
+    }
+}
+
 function getPlayerChoice(){
     let playerSelection = "";
     playerSelection = prompt("Choose rock, paper, or scissors");
 
-    if (playerSelection == null){
-        console.log("Please enter rock, paper, or scissors");
+    if (playerSelection != null) {
+        playerSelection = playerSelection.toLowerCase();
+    }
+
+    if (!validatePlayerChoice(playerSelection)){
         return getPlayerChoice();
     }
-    
-    playerSelection = playerSelection.toLowerCase();
-    if (playerSelection === "rock" || 
-        playerSelection === "paper" || 
-        playerSelection === "scissors"){
-            return playerSelection;
-    }
-    else {
-        console.log("Please enter rock, paper, or scissors");
-        return getPlayerChoice();
-        
-    }
+
+    return playerSelection;
 }
 
 function playRound(playerSelection, computerSelection){
