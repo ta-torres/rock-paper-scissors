@@ -38,12 +38,15 @@ function isPlayerWin(playerSelection, computerSelection){
 
 function playRound(playerSelection, computerSelection){
     if (playerSelection === computerSelection){
+        console.log("It's a tie");
         return "It's a tie";
     }
     else if (isPlayerWin(playerSelection, computerSelection)){
+        console.log(`You win! ${playerSelection} beats ${computerSelection}`);
         return `You win! ${playerSelection} beats ${computerSelection}`;
     }
     else {
+        console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
         return `You lose! ${computerSelection} beats ${playerSelection}`;
     }
 }
@@ -79,3 +82,19 @@ function game(){
     }
 }
 //game();
+
+const rockButton = document.getElementById("rock");
+const paperButton = document.getElementById("paper");
+const scissorsButton = document.getElementById("scissors");
+
+rockButton.addEventListener("click", function() {
+    playRound("rock", getComputerChoice());
+});
+
+paperButton.addEventListener("click", function() {
+    playRound("paper", getComputerChoice());
+});
+
+scissorsButton.addEventListener("click", function() {
+    playRound("scissors", getComputerChoice());
+});
