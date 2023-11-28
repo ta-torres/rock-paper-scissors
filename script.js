@@ -1,3 +1,7 @@
+let playerScore = 0;
+let computerScore = 0;
+let roundResult = "";
+
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
     return choices[Math.floor(Math.random() * choices.length)];
@@ -38,16 +42,15 @@ function isPlayerWin(playerSelection, computerSelection){
 
 function playRound(playerSelection, computerSelection){
     if (playerSelection === computerSelection){
-        console.log("It's a tie");
-        return "It's a tie";
+        roundResult = "tie";
     }
     else if (isPlayerWin(playerSelection, computerSelection)){
-        console.log(`You win! ${playerSelection} beats ${computerSelection}`);
-        return `You win! ${playerSelection} beats ${computerSelection}`;
+        roundResult = "win";
+        playerScore++;
     }
     else {
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
-        return `You lose! ${computerSelection} beats ${playerSelection}`;
+        roundResult = "lose";
+        computerScore++;
     }
 }
 
@@ -86,15 +89,36 @@ function game(){
 const rockButton = document.getElementById("rock");
 const paperButton = document.getElementById("paper");
 const scissorsButton = document.getElementById("scissors");
+const playerScoreDisplay = document.querySelector(".player-score");
+const computerScoreDisplay = document.querySelector(".computer-score");
+const roundResultDisplay = document.querySelector(".result");
 
 rockButton.addEventListener("click", function() {
     playRound("rock", getComputerChoice());
+    updateScoreDisplay(roundResult, "rock", getComputerChoice());
 });
 
 paperButton.addEventListener("click", function() {
     playRound("paper", getComputerChoice());
+    updateScoreDisplay(roundResult, "paper", getComputerChoice());
 });
 
 scissorsButton.addEventListener("click", function() {
     playRound("scissors", getComputerChoice());
+    updateScoreDisplay(roundResult, "scissors", getComputerChoice());
 });
+
+function updateScoreDisplay(roundResult, playerSelection, computerSelection){
+    if (roundResult === "tie"){
+        roundResultDisplay.textContent = `It's a tie!`;
+    }
+    else if (roundResult === "win"){
+        roundResultDisplay.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+    }
+    else if (roundResult === "lose"){
+        roundResultDisplay.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
+    }
+
+    playerScoreDisplay.textContent = playerScore;
+    computerScoreDisplay.textContent = computerScore;
+}
