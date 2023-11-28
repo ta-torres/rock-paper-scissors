@@ -93,20 +93,15 @@ const playerScoreDisplay = document.querySelector(".player-score");
 const computerScoreDisplay = document.querySelector(".computer-score");
 const roundResultDisplay = document.querySelector(".result");
 
-rockButton.addEventListener("click", function() {
-    playRound("rock", getComputerChoice());
-    updateScoreDisplay(roundResult, "rock", getComputerChoice());
-});
+function handleClick (playerSelection) {
+    let computerSelection = getComputerChoice();
+    playRound(playerSelection, computerSelection);
+    updateScoreDisplay(roundResult, playerSelection, computerSelection);
+}
 
-paperButton.addEventListener("click", function() {
-    playRound("paper", getComputerChoice());
-    updateScoreDisplay(roundResult, "paper", getComputerChoice());
-});
-
-scissorsButton.addEventListener("click", function() {
-    playRound("scissors", getComputerChoice());
-    updateScoreDisplay(roundResult, "scissors", getComputerChoice());
-});
+rockButton.addEventListener("click", () => handleClick("rock"));
+paperButton.addEventListener("click", () => handleClick("paper"));
+scissorsButton.addEventListener("click", () => handleClick("scissors"));
 
 function updateScoreDisplay(roundResult, playerSelection, computerSelection){
     if (roundResult === "tie"){
