@@ -40,6 +40,14 @@ function isPlayerWin(playerSelection, computerSelection){
            (playerSelection === "scissors" && computerSelection === "paper");
 }
 
+function isGameOver(playerScore, computerScore){
+    return playerScore === 5 || computerScore === 5;
+}
+
+function isGameWin(playerScore, computerScore){
+    return playerScore > computerScore;
+}
+
 function playRound(playerSelection, computerSelection){
     if (playerSelection === computerSelection){
         roundResult = "tie";
@@ -97,6 +105,11 @@ function handleClick (playerSelection) {
     let computerSelection = getComputerChoice();
     playRound(playerSelection, computerSelection);
     updateScoreDisplay(roundResult, playerSelection, computerSelection);
+
+    if (isGameOver(playerScore, computerScore)) {
+        displayFinalResult();
+        resetScores();
+    }
 }
 
 rockButton.addEventListener("click", () => handleClick("rock"));
@@ -116,4 +129,16 @@ function updateScoreDisplay(roundResult, playerSelection, computerSelection){
 
     playerScoreDisplay.textContent = playerScore;
     computerScoreDisplay.textContent = computerScore;
+}
+
+function resetScores() {
+    playerScore = 0;
+    computerScore = 0;
+    playerScoreDisplay.textContent = playerScore;
+    computerScoreDisplay.textContent = computerScore;
+}
+
+function displayFinalResult() {
+    const finalMessage = isGameWin(playerScore, computerScore) ? 'You won the game!' : 'You lost the game!';
+    roundResultDisplay.textContent = finalMessage;
 }
