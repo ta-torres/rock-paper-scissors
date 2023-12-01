@@ -1,27 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>Rock, Paper, Scissors</h1>
-    <div class="choices">
-        <button class="btn" id="rock">Rock</button>
-        <button class="btn" id="paper">Paper</button>
-        <button class="btn" id="scissors">Scissors</button>
+
+    <div class="header">
+        <h1>Rock, Paper, Scissors</h1>
     </div>
-    <div class="score-board">
-        <div>
-            Player: <span class="player-score">0</span>
+
+    <div class="hero-wrapper">
+        <div class="choices">
+            <button class="btn" id="rock"><img src="images/rock.svg"></button>
+            <button class="btn" id="paper"><img src="images/paper.svg"></button>
+            <button class="btn" id="scissors"><img src="images/scissors.svg"></button>
         </div>
-        <div class="result"></div>
-        <div>
-            Computer: <span class="computer-score">0</span>
+        <div class="score-board">
+            <div>
+                Player: <span class="player-score">0</span>
+            </div>
+            <div class="result"></div>
+            <div>
+                Computer: <span class="computer-score">0</span>
+            </div>
         </div>
     </div>
+
+    <div class="footer">
+        <p> <a href="https://github.com/ta-torres/rock-paper-scissors"><img src="images/logo-github.svg"></a> </p>
+    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>
