@@ -102,13 +102,16 @@ const computerScoreDisplay = document.querySelector(".computer-score");
 const roundResultDisplay = document.querySelector(".result");
 
 function handleClick (playerSelection) {
+    if (isGameOver(playerScore, computerScore)){
+        return;
+    }
+
     let computerSelection = getComputerChoice();
     playRound(playerSelection, computerSelection);
     updateScoreDisplay(roundResult, playerSelection, computerSelection);
 
     if (isGameOver(playerScore, computerScore)) {
         displayFinalResult();
-        resetScores();
     }
 }
 
@@ -136,9 +139,28 @@ function resetScores() {
     computerScore = 0;
     playerScoreDisplay.textContent = playerScore;
     computerScoreDisplay.textContent = computerScore;
+    roundResultDisplay.textContent = "";
+    rockButton.disabled = false;
+    paperButton.disabled = false;
+    scissorsButton.disabled = false;
 }
 
 function displayFinalResult() {
     const finalMessage = isGameWin(playerScore, computerScore) ? 'You won the game!' : 'You lost the game!';
     roundResultDisplay.textContent = finalMessage;
+
+    if (isGameWin(playerScore, computerScore)) {
+        rockButton.disabled = true;
+        paperButton.disabled = true;
+        scissorsButton.disabled = true;
+    }
+    
+    const gameOverMessage = document.getElementById('game-over-message');
+    gameOverMessage.style.display = 'flex';
+
+    const retryButton = document.getElementById('retry-button');
+    retryButton.onclick = function() {
+        resetScores();
+        gameOverMessage.style.display = 'none';
+    }
 }

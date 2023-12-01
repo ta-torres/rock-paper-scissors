@@ -96,6 +96,7 @@ ul {
 .score-board {
 	display: flex;
 	justify-content: space-between;
+	position: relative;
 
 	margin-top: 50px;
 	width: 600px;
@@ -104,6 +105,28 @@ ul {
 
 .score-board div {
 	font-size: 20px;
+}
+
+#retry-button {
+	padding: 10px 20px;
+	margin: 10px;
+	border-radius: 5px;
+	background: #b39a86;
+}
+
+#retry-button:hover {
+	background: #E07A5F;
+}
+
+#game-over-message {
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	bottom: -100px;
+	left: 0;
+	right: 0;
 }
 
 .footer {
@@ -119,5 +142,5 @@ ul {
 
 .footer img {
 	width: 25px;
-	height: autos;
+	height: auto;
 }
