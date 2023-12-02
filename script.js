@@ -81,20 +81,11 @@ function resetScores() {
     playerScoreDisplay.textContent = playerScore;
     computerScoreDisplay.textContent = computerScore;
     roundResultDisplay.textContent = "";
-    rockButton.disabled = false;
-    paperButton.disabled = false;
-    scissorsButton.disabled = false;
 }
 
 function displayFinalResult() {
     const finalMessage = isGameWin(playerScore, computerScore) ? 'You won the game!' : 'You lost the game!';
     roundResultDisplay.textContent = finalMessage;
-
-    if (isGameWin(playerScore, computerScore)) {
-        rockButton.disabled = true;
-        paperButton.disabled = true;
-        scissorsButton.disabled = true;
-    }
 
     const gameOverMessage = document.getElementById('game-over-message');
     gameOverMessage.style.display = 'flex';
